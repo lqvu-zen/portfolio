@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lê Quang Vũ — Engine Senior Programmer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700&subset=latin,vietnamese&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="logo">LÊ QUANG <span>VŨ</span></div>
+  <div class="logo">LÊ QUANG VŨ</div>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
@@ -41,20 +42,19 @@
       <p class="bio">Engine programmer at Gameloft Vietnam, building and maintaining in-house game engines across mobile, PC, and console. Contributed to Asphalt 9: Legends — 100M+ downloads worldwide. Passionate about performance optimization, cross-platform porting, and robust engine architecture.</p>
       <div class="cta-row">
         <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="resume.pdf" target="_blank" class="btn btn-outline">Download Resume</a>
       </div>
       <div class="stats-row">
         <div class="stat corner-box">
-          <div class="stat-num" data-count="3" data-suffix="+">0</div>
+          <div class="stat-num" data-count="4" data-suffix="+">0</div>
           <div class="stat-label">Years at Gameloft</div>
         </div>
         <div class="stat corner-box">
-          <div class="stat-num" data-count="100" data-suffix="M+">0</div>
-          <div class="stat-label">Game Downloads</div>
+          <div class="stat-num" data-count="4" data-suffix="+">0</div>
+          <div class="stat-label">Years in Game Industry</div>
         </div>
         <div class="stat corner-box">
           <div class="stat-num" data-count="5">0</div>
-          <div class="stat-label">Platforms Shipped</div>
+          <div class="stat-label">Platforms Worked On</div>
         </div>
       </div>
     </div>
@@ -90,27 +90,160 @@
   </div>
   <div class="games-grid">
 
-    <div class="game-card corner-box reveal" style="--delay:0ms" data-video="">
+    <div class="game-card corner-box reveal" style="--delay:0ms" data-video="https://www.youtube.com/embed/vyLjGB7bj2s?si=OECHBbySQ8wOD5PM">
       <div class="game-thumb">
-        <canvas id="c1" width="480" height="200"></canvas>
-        <button class="play-btn" aria-label="Play demo video">
+        <img src="https://img.youtube.com/vi/vyLjGB7bj2s/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/vyLjGB7bj2s/hqdefault.jpg'"
+             alt="Asphalt Legends preview" loading="lazy">
+        <button class="play-btn" aria-label="Watch demo video">
           <span class="play-icon">▶</span>
           <span class="play-label">WATCH DEMO</span>
         </button>
       </div>
       <span class="game-badge badge-custom">GAMELOFT ENGINE</span>
+      <span class="live-tag"><span class="live-dot"></span>LIVE</span>
       <div class="card-body">
         <div class="card-title">
           Asphalt Legends
           <a class="card-link" href="https://asphaltlegends.com/" target="_blank">↗</a>
         </div>
-        <div class="card-desc">Globally successful arcade racing game with 100M+ downloads. Contributed to engine features, multi-platform porting (Xbox, PC, iOS, Android), bug fixes, and performance optimization.</div>
+        <div class="card-desc">Globally successful arcade racing game with 100M+ downloads.</div>
+        <div class="card-what">
+          <div class="card-what-title">// WHAT I DID</div>
+          <ul class="card-what-list">
+            <li>Contributed to engine features, multi-platform porting (Xbox, PC, iOS, Android), bug fixes, and performance optimization.</li>
+            <li>Developed and maintained in-house game engines, improving performance and stability across multiple platforms.</li>
+            <li>Deployed and maintained advertisement services integrated into games.</li>
+          </ul>
+        </div>
         <div class="card-tags">
           <span class="tag-pill">C++</span>
           <span class="tag-pill">Java</span>
           <span class="tag-pill">Python</span>
           <span class="tag-pill">Obj-C</span>
           <span class="tag-pill">Multiplayer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card corner-box reveal" style="--delay:100ms" data-video="https://www.youtube.com/embed/VQhYHEzhrsQ?si=mtg3KsCrYfNf1HJf">
+      <div class="game-thumb">
+        <img src="https://img.youtube.com/vi/VQhYHEzhrsQ/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/VQhYHEzhrsQ/hqdefault.jpg'"
+             alt="Healthcare Science Teaching Assistant preview" loading="lazy">
+        <button class="play-btn" aria-label="Watch demo video">
+          <span class="play-icon">▶</span>
+          <span class="play-label">WATCH DEMO</span>
+        </button>
+      </div>
+      <span class="game-badge badge-unity">UNITY / C#</span>
+      <div class="card-body">
+        <div class="card-title">Healthcare Science Teaching Assistant</div>
+        <div class="card-desc">Graduation thesis — 2 members — Jul 2022</div>
+        <div class="card-what">
+          <div class="card-what-title">// WHAT I DID</div>
+          <ul class="card-what-list">
+            <li>Developed a Mixed Reality application for Healthcare Science education with another member.</li>
+            <li>Enabled students to interact with a 3D human anatomical model overlaid in real space.</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">C#</span>
+          <span class="tag-pill">Unity</span>
+          <span class="tag-pill">Mixed Reality</span>
+          <span class="tag-pill">3D</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card corner-box reveal" style="--delay:200ms" data-video="https://www.youtube.com/embed/3EG3p32viuk?si=9uSZvrxKa-3ZhWhW">
+      <div class="game-thumb">
+        <img src="https://img.youtube.com/vi/3EG3p32viuk/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/3EG3p32viuk/hqdefault.jpg'"
+             alt="AR Magic Touch preview" loading="lazy">
+        <button class="play-btn" aria-label="Watch demo video">
+          <span class="play-icon">▶</span>
+          <span class="play-label">WATCH DEMO</span>
+        </button>
+      </div>
+      <span class="game-badge badge-unity">UNITY / C#</span>
+      <div class="card-body">
+        <div class="card-title">AR Magic Touch</div>
+        <div class="card-desc">Course project — 2 members. AR game playable on Android mobile devices.</div>
+        <div class="card-what">
+          <div class="card-what-title">// WHAT I DID</div>
+          <ul class="card-what-list">
+            <li>Designed and implemented the skill system.</li>
+            <li>Designed and implemented AR interaction with monsters.</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">C#</span>
+          <span class="tag-pill">Unity</span>
+          <span class="tag-pill">AR</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card corner-box reveal" style="--delay:300ms" data-video="https://www.youtube.com/embed/4yoszqaBigs?si=-3EAglwuFyfOBpIr">
+      <div class="game-thumb">
+        <img src="https://img.youtube.com/vi/4yoszqaBigs/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/4yoszqaBigs/hqdefault.jpg'"
+             alt="Itus Knight preview" loading="lazy">
+        <button class="play-btn" aria-label="Watch demo video">
+          <span class="play-icon">▶</span>
+          <span class="play-label">WATCH DEMO</span>
+        </button>
+      </div>
+      <span class="game-badge badge-unity">UNITY / C#</span>
+      <div class="card-body">
+        <div class="card-title">Itus Knight</div>
+        <div class="card-desc">Course project — 2 members. Platformer game developed in Unity.</div>
+        <div class="card-what">
+          <div class="card-what-title">// WHAT I DID</div>
+          <ul class="card-what-list">
+            <li>Designed and implemented the character movement system.</li>
+            <li>Designed and implemented the weapon and bullet system.</li>
+            <li>Designed and implemented the level design elements.</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">C#</span>
+          <span class="tag-pill">Unity</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card corner-box reveal" style="--delay:400ms" data-video="">
+      <div class="game-thumb">
+        <canvas id="cFM" width="480" height="200"></canvas>
+        <div class="card-letter-icon">Z</div>
+        <button class="play-btn" aria-label="Watch demo video">
+          <span class="play-icon">▶</span>
+          <span class="play-label">WATCH DEMO</span>
+        </button>
+      </div>
+      <span class="game-badge badge-custom">C++ / COCOS2D</span>
+      <div class="card-body">
+        <div class="card-title">
+          Forgotten Memoriae
+          <a class="card-link" href="https://github.com/lqvu-zen/LEAP-Group3-Terminators" target="_blank">↗</a>
+        </div>
+        <div class="card-desc">Intern project — 3 members. 2D action-platformer set in a fantasy world, built with Cocos2d-x and shipped on Android &amp; Windows.</div>
+        <div class="card-what">
+          <div class="card-what-title">// WHAT I DID</div>
+          <ul class="card-what-list">
+            <li>Contributed to core gameplay systems including combat, inventory, and skill mechanics.</li>
+            <li>Implemented enemy AI behaviours including the Medusa boss with summoning abilities.</li>
+            <li>Developed dynamic camera system and fall damage mechanics.</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">C++</span>
+          <span class="tag-pill">Cocos2d-x</span>
+          <span class="tag-pill">Android</span>
+          <span class="tag-pill">Windows</span>
+          <span class="tag-pill">2D</span>
         </div>
       </div>
     </div>
@@ -210,11 +343,6 @@
       </div>
     </div>
     <div class="contact-links reveal" style="--delay:100ms">
-      <a class="contact-link corner-box" href="tel:+840333932578">
-        <span class="contact-link-icon">PHONE</span>
-        <span>0333 932 578</span>
-        <span class="contact-link-arrow">→</span>
-      </a>
       <a class="contact-link corner-box" href="mailto:lqvu.zen@gmail.com">
         <span class="contact-link-icon">EMAIL</span>
         <span>lqvu.zen@gmail.com</span>
@@ -252,9 +380,7 @@
   <div class="video-modal-backdrop"></div>
   <div class="video-modal-box corner-box">
     <button class="video-modal-close" id="videoModalClose" aria-label="Close">✕</button>
-    <div class="video-modal-player">
-      <video id="videoPlayer" controls playsinline></video>
-    </div>
+    <div class="video-modal-player" id="videoModalPlayer"></div>
   </div>
 </div>
 

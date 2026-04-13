@@ -6,6 +6,7 @@
   --c1: #0ff;
   --c2: #f0f;
   --c3: #ff0;
+  --c4: #0f8;
   --bg:  #040c14;
   --bg2: #071624;
   --bg3: #0a1e30;
@@ -86,7 +87,7 @@ nav.scrolled {
   border-bottom-color: rgba(0,255,255,0.25);
   box-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
-.logo { font-family: 'Share Tech Mono'; color: var(--c1); font-size: 1.05rem; letter-spacing: 3px; }
+.logo { font-family: 'Oxanium', sans-serif; font-weight: 700; color: var(--c1); font-size: 1.05rem; letter-spacing: 3px; }
 .logo span { color: var(--c2); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
@@ -251,8 +252,43 @@ h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.0
   box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 24px rgba(0,255,255,0.04);
 }
 .game-thumb { height: 180px; overflow: hidden; background: var(--bg); }
-.game-thumb canvas { width: 100%; height: 100%; display: block; transition: filter var(--tr); }
-.game-card:hover .game-thumb canvas { filter: brightness(1.12); }
+.game-thumb canvas,
+.game-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; transition: filter var(--tr); }
+.game-card:hover .game-thumb canvas,
+.game-card:hover .game-thumb img { filter: brightness(1.1); }
+
+/* Card letter icon */
+.card-letter-icon {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Oxanium', sans-serif; font-size: 5rem; font-weight: 700;
+  color: rgba(255, 240, 0, 0.12);
+  text-shadow: 0 0 40px rgba(255,240,0,0.15);
+  letter-spacing: -4px; pointer-events: none;
+  user-select: none; line-height: 1;
+  transition: color var(--tr), text-shadow var(--tr);
+}
+.game-card:hover .card-letter-icon {
+  color: rgba(255,240,0,0.22);
+  text-shadow: 0 0 60px rgba(255,240,0,0.25);
+}
+
+/* Live tag */
+.live-tag {
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin: .6rem .9rem 0 0; float: right;
+  font-family: 'Share Tech Mono'; font-size: .58rem;
+  color: var(--c4, #0f8); letter-spacing: 2px;
+  border: 1px solid rgba(0,255,136,0.3);
+  background: rgba(0,255,136,0.07);
+  padding: .25rem .6rem;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c4, #0f8);
+  box-shadow: 0 0 6px var(--c4, #0f8);
+  animation: blink 1.5s ease-in-out infinite;
+}
 .game-badge {
   display: inline-block; margin: .9rem .9rem 0;
   font-family: 'Share Tech Mono'; font-size: .58rem; padding: .28rem .65rem; letter-spacing: 2px;
@@ -265,6 +301,23 @@ h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.0
 .card-link { font-size: .75rem; color: var(--muted); text-decoration: none; transition: color var(--tr); line-height: 1; }
 .card-link:hover { color: var(--c1); }
 .card-desc { font-size: .8rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+.card-what { margin-bottom: 1rem; }
+.card-what-title {
+  font-family: 'Share Tech Mono'; font-size: .62rem;
+  color: var(--c2); letter-spacing: 3px; margin-bottom: .5rem;
+}
+.card-what-list {
+  list-style: none; display: flex; flex-direction: column; gap: .4rem;
+}
+.card-what-list li {
+  font-size: .8rem; color: var(--muted); line-height: 1.6;
+  padding-left: 1rem; position: relative;
+}
+.card-what-list li::before {
+  content: '›'; position: absolute; left: 0;
+  color: var(--c1); font-size: .9rem; line-height: 1.5;
+}
+
 .card-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
 .tag-pill {
   font-size: .58rem; padding: .2rem .55rem;
@@ -407,7 +460,8 @@ h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.0
 }
 .video-modal-close:hover { color: var(--c1); background: rgba(0,255,255,0.06); }
 .video-modal-player { aspect-ratio: 16/9; background: #000; }
-.video-modal-player video { width: 100%; height: 100%; display: block; }
+.video-modal-player video,
+.video-modal-player iframe { width: 100%; height: 100%; display: block; border: none; }
 
 /* --- Back to top ------------------------------------------- */
 .back-to-top {

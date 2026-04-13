@@ -100,17 +100,24 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
 
 // --- Video modal ---------------------------------------------
 const modal = document.getElementById('videoModal');
-const videoPlayer = document.getElementById('videoPlayer');
+const modalPlayer = document.getElementById('videoModalPlayer');
+
 function openModal(src) {
-  videoPlayer.src = src;
+  const isYoutube = src.includes('youtube.com') || src.includes('youtu.be');
+  if (isYoutube) {
+    // Convert embed URL back to watch URL for direct open
+    const videoId = src.match(/embed\/([^?]+)/)?.[1];
+    const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : src;
+    window.open(watchUrl, '_blank', 'noopener,noreferrer');
+    return;
+  }
+  modalPlayer.innerHTML = `<video src="${src}" controls playsinline autoplay></video>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
-  videoPlayer.play().catch(() => {});
 }
 function closeModal() {
   modal.classList.remove('open');
-  videoPlayer.pause();
-  videoPlayer.src = '';
+  modalPlayer.innerHTML = '';
   document.body.style.overflow = '';
 }
 document.getElementById('videoModalClose').addEventListener('click', closeModal);
@@ -198,8 +205,3 @@ function drawRender(canvas) {
   frame();
 }
 
-// --- Init canvases on load -----------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  const c1 = document.getElementById('c1');
-  if (c1) drawRender(c1);
-});
