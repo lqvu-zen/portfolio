@@ -185,6 +185,12 @@ document.querySelectorAll('.game-card[data-video]').forEach(card => {
   draw();
 })();
 
+// --- Wire up project card canvases --------------------------
+window.addEventListener('DOMContentLoaded', () => {
+  const cFM = document.getElementById('cFM');
+  if (cFM) drawRender(cFM);
+});
+
 // --- Canvas: Render Pipeline (animated waves) ----------------
 function drawRender(canvas) {
   const ctx = canvas.getContext('2d');
