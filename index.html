@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lê Quang Vũ — Engine Senior Programmer</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="cursor-glow" id="glow"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">LÊ QUANG <span>VŨ</span></div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#projects" data-nav>Projects</a>
+    <a href="#skills" data-nav>Skills</a>
+    <a href="#awards" data-nav>Awards</a>
+    <a href="#contact" data-nav>Contact</a>
+    <span class="status-dot"></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-particles" id="heroParticles"></canvas>
+  <div class="grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="tag">&gt; <span id="typeText"></span><span class="type-cursor">█</span></div>
+      <h1>
+        <span class="name" data-glitch="Lê Quang Vũ">Lê Quang Vũ</span>
+        <span class="title">Engine Senior Programmer</span>
+      </h1>
+      <p class="bio">Engine programmer at Gameloft Vietnam, building and maintaining in-house game engines across mobile, PC, and console. Contributed to Asphalt 9: Legends — 100M+ downloads worldwide. Passionate about performance optimization, cross-platform porting, and robust engine architecture.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="resume.pdf" target="_blank" class="btn btn-outline">Download Resume</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat corner-box">
+          <div class="stat-num" data-count="3" data-suffix="+">0</div>
+          <div class="stat-label">Years at Gameloft</div>
+        </div>
+        <div class="stat corner-box">
+          <div class="stat-num" data-count="100" data-suffix="M+">0</div>
+          <div class="stat-label">Game Downloads</div>
+        </div>
+        <div class="stat corner-box">
+          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-label">Platforms Shipped</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-box corner-box">
+        <div class="badge-icon">⚙</div>
+        <div class="badge-label">Company</div>
+        <div class="badge-val">Gameloft</div>
+      </div>
+      <div class="badge-box corner-box">
+        <div class="badge-icon">▣</div>
+        <div class="badge-label">Platform</div>
+        <div class="badge-val">Mobile / PC / Console</div>
+      </div>
+      <div class="badge-box corner-box">
+        <div class="badge-icon">◎</div>
+        <div class="badge-label">Location</div>
+        <div class="badge-val">Ho Chi Minh</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-inner">
+  <div class="sec-header reveal">
+    <div class="sec-label">// FEATURED WORK</div>
+    <div class="sec-title">Projects</div>
+  </div>
+  <div class="games-grid">
+
+    <div class="game-card corner-box reveal" style="--delay:0ms" data-video="">
+      <div class="game-thumb">
+        <canvas id="c1" width="480" height="200"></canvas>
+        <button class="play-btn" aria-label="Play demo video">
+          <span class="play-icon">▶</span>
+          <span class="play-label">WATCH DEMO</span>
+        </button>
+      </div>
+      <span class="game-badge badge-custom">GAMELOFT ENGINE</span>
+      <div class="card-body">
+        <div class="card-title">
+          Asphalt Legends
+          <a class="card-link" href="https://asphaltlegends.com/" target="_blank">↗</a>
+        </div>
+        <div class="card-desc">Globally successful arcade racing game with 100M+ downloads. Contributed to engine features, multi-platform porting (Xbox, PC, iOS, Android), bug fixes, and performance optimization.</div>
+        <div class="card-tags">
+          <span class="tag-pill">C++</span>
+          <span class="tag-pill">Java</span>
+          <span class="tag-pill">Python</span>
+          <span class="tag-pill">Obj-C</span>
+          <span class="tag-pill">Multiplayer</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-inner">
+  <div class="sec-header reveal">
+    <div class="sec-label">// TECH STACK</div>
+    <div class="sec-title">Skills</div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group corner-box reveal" style="--delay:0ms">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-item"><span class="skill-name">C++ (14/17/20)</span><div class="skill-bar"><div class="skill-fill" data-w="97"></div></div><span class="skill-pct">97%</span></div>
+      <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div><span class="skill-pct">80%</span></div>
+      <div class="skill-item"><span class="skill-name">Java</span><div class="skill-bar"><div class="skill-fill" data-w="75"></div></div><span class="skill-pct">75%</span></div>
+      <div class="skill-item"><span class="skill-name">Objective-C</span><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div><span class="skill-pct">70%</span></div>
+      <div class="skill-item"><span class="skill-name">Vulkan</span><div class="skill-bar"><div class="skill-fill" data-w="65"></div></div><span class="skill-pct">65%</span></div>
+    </div>
+    <div class="skill-group corner-box reveal" style="--delay:100ms">
+      <div class="skill-group-title">Platforms</div>
+      <div class="skill-item"><span class="skill-name">Android</span><div class="skill-bar"><div class="skill-fill" data-w="93"></div></div><span class="skill-pct">93%</span></div>
+      <div class="skill-item"><span class="skill-name">Windows / PC</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">iOS / macOS</span><div class="skill-bar"><div class="skill-fill" data-w="83"></div></div><span class="skill-pct">83%</span></div>
+      <div class="skill-item"><span class="skill-name">Xbox (Console)</span><div class="skill-bar"><div class="skill-fill" data-w="78"></div></div><span class="skill-pct">78%</span></div>
+      <div class="skill-item"><span class="skill-name">Linux</span><div class="skill-bar"><div class="skill-fill" data-w="72"></div></div><span class="skill-pct">72%</span></div>
+    </div>
+    <div class="skill-group corner-box reveal" style="--delay:200ms">
+      <div class="skill-group-title">Engine &amp; Systems</div>
+      <div class="skill-item"><span class="skill-name">In-house Engine Dev</span><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
+      <div class="skill-item"><span class="skill-name">Platform Porting</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+      <div class="skill-item"><span class="skill-name">Performance Optim.</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">CI/CD Pipelines</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-item"><span class="skill-name">Unity / C#</span><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div><span class="skill-pct">70%</span></div>
+    </div>
+    <div class="skill-group corner-box reveal" style="--delay:300ms">
+      <div class="skill-group-title">Tools</div>
+      <div class="skill-item"><span class="skill-name">Git / GitLab</span><div class="skill-bar"><div class="skill-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+      <div class="skill-item"><span class="skill-name">Tracy Profiler</span><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+      <div class="skill-item"><span class="skill-name">Visual Studio / VSCode</span><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+      <div class="skill-item"><span class="skill-name">Android Studio</span><div class="skill-bar"><div class="skill-fill" data-w="78"></div></div><span class="skill-pct">78%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" class="section-inner">
+  <div class="sec-header reveal">
+    <div class="sec-label">// HONORS &amp; ACHIEVEMENTS</div>
+    <div class="sec-title">Awards</div>
+  </div>
+  <div class="awards-grid">
+    <div class="award-card corner-box reveal" style="--delay:0ms">
+      <div class="award-rank">2ND</div>
+      <div class="award-year">2018</div>
+      <div class="award-title">National Informatics Contest</div>
+      <div class="award-sub">National High School Informatics Olympiad</div>
+    </div>
+    <div class="award-card corner-box reveal" style="--delay:100ms">
+      <div class="award-rank">3RD</div>
+      <div class="award-year">2018</div>
+      <div class="award-title">ICPC/ACM Asia South</div>
+      <div class="award-sub">International Collegiate Programming Contest</div>
+    </div>
+    <div class="award-card corner-box reveal" style="--delay:200ms">
+      <div class="award-rank">3RD</div>
+      <div class="award-year">2020</div>
+      <div class="award-title">HCMUS-CTF 2020</div>
+      <div class="award-sub">Computer Security / Capture The Flag</div>
+    </div>
+    <div class="award-card corner-box highlight reveal" style="--delay:300ms">
+      <div class="award-rank gold">1ST</div>
+      <div class="award-year">2021</div>
+      <div class="award-title">Academic Challenge 2021</div>
+      <div class="award-sub">Academic Competition Challenge, VNU-HCM</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-inner">
+  <div class="sec-header reveal">
+    <div class="sec-label">// REACH OUT</div>
+    <div class="sec-title">Contact</div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-blurb reveal">
+      <p>Senior Engine Programmer at Gameloft Vietnam with hands-on experience shipping AAA mobile titles to 100M+ players across all major platforms.</p>
+      <p>Open to technical discussions, collaborations, and new opportunities in game engine development.</p>
+      <div class="contact-terminal">
+        <div class="terminal-line"><span class="t-prompt">$</span> echo "Let's build something great"</div>
+        <div class="terminal-line t-out">Let's build something great</div>
+        <div class="terminal-line"><span class="t-prompt">$</span><span class="type-cursor">█</span></div>
+      </div>
+    </div>
+    <div class="contact-links reveal" style="--delay:100ms">
+      <a class="contact-link corner-box" href="tel:+840333932578">
+        <span class="contact-link-icon">PHONE</span>
+        <span>0333 932 578</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link corner-box" href="mailto:lqvu.zen@gmail.com">
+        <span class="contact-link-icon">EMAIL</span>
+        <span>lqvu.zen@gmail.com</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link corner-box" href="https://github.com/lqvu-zen" target="_blank">
+        <span class="contact-link-icon">GITHUB</span>
+        <span>github.com/lqvu-zen</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link corner-box" href="https://linkedin.com/in/lqvu" target="_blank">
+        <span class="contact-link-icon">LINKEDIN</span>
+        <span>linkedin.com/in/lqvu</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a class="contact-link corner-box" href="resume.pdf" target="_blank">
+        <span class="contact-link-icon">RESUME</span>
+        <span>Download PDF</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-bracket">[</span>&nbsp;LÊ QUANG VŨ © 2025&nbsp;<span class="footer-bracket">]</span>
+  &mdash; ENGINE SYSTEMS ONLINE
+  <span class="status-dot"></span>
+</footer>
+
+<a class="back-to-top" id="backToTop" href="#" aria-label="Back to top">▲</a>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video demo">
+  <div class="video-modal-backdrop"></div>
+  <div class="video-modal-box corner-box">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Close">✕</button>
+    <div class="video-modal-player">
+      <video id="videoPlayer" controls playsinline></video>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
