@@ -101,17 +101,38 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
 // --- Video modal ---------------------------------------------
 const modal = document.getElementById('videoModal');
 const modalPlayer = document.getElementById('videoModalPlayer');
+const modalYT = document.getElementById('videoModalYT');
 
 function openModal(src) {
   const isYoutube = src.includes('youtube.com') || src.includes('youtu.be');
   if (isYoutube) {
-    // Convert embed URL back to watch URL for direct open
+    const url = src.includes('?') ? src + '&autoplay=1' : src + '?autoplay=1';
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.title = 'YouTube video player';
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    // Fallback: if YouTube blocks embedding, open in new tab
+    iframe.addEventListener('error', () => {
+      const videoId = src.match(/embed\/([^?]+)/)?.[1];
+      const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : src;
+      closeModal();
+      window.open(watchUrl, '_blank', 'noopener,noreferrer');
+    });
+    modalPlayer.innerHTML = '';
+    modalPlayer.appendChild(iframe);
+    // Set YouTube watch link
     const videoId = src.match(/embed\/([^?]+)/)?.[1];
-    const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : src;
-    window.open(watchUrl, '_blank', 'noopener,noreferrer');
-    return;
+    if (modalYT && videoId) {
+      modalYT.href = `https://www.youtube.com/watch?v=${videoId}`;
+      modalYT.style.display = 'block';
+    }
+  } else {
+    if (modalYT) modalYT.style.display = 'none';
+    modalPlayer.innerHTML = `<video src="${src}" controls playsinline autoplay></video>`;
   }
-  modalPlayer.innerHTML = `<video src="${src}" controls playsinline autoplay></video>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }

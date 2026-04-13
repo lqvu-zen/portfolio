@@ -462,6 +462,13 @@ h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.0
 .video-modal-player { aspect-ratio: 16/9; background: #000; }
 .video-modal-player video,
 .video-modal-player iframe { width: 100%; height: 100%; display: block; border: none; }
+.video-modal-yt {
+  display: none; text-align: center; padding: .6rem;
+  font-family: 'Share Tech Mono'; font-size: .68rem;
+  color: var(--muted); letter-spacing: 2px; text-decoration: none;
+  transition: color var(--tr);
+}
+.video-modal-yt:hover { color: var(--c1); }
 
 /* --- Back to top ------------------------------------------- */
 .back-to-top {
