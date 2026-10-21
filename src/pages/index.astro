@@ -1,16 +1,231 @@
 ---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import TitleScene from '../components/TitleScene.astro';
+import LevelCard from '../components/LevelCard.astro';
+import StatBar from '../components/StatBar.astro';
+import Sprite from '../components/Sprite.astro';
+import { star, avatar } from '../data/sprites';
+import { profile, hud, statGroups } from '../data/profile';
+
+const featured = (await getCollection('projects', ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const topStats = [statGroups[0].stats[0], statGroups[2].stats[0], statGroups[2].stats[1], statGroups[2].stats[2]];
+
+const menu = [
+  { label: 'Start game', note: 'Level select', href: '/projects/' },
+  { label: 'Character', note: 'About me', href: '/about/' },
+  { label: 'Load resume', note: 'PDF', href: profile.resume },
+  { label: 'Contact', note: 'Save point', href: '#save-point' },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <section class="title-screen">
+    <TitleScene />
+
+    <dl class="hud wrap">
+      {hud.map((h) => (
+        <div>
+          <dt>{h.label}</dt>
+          <dd>{h.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="title-inner wrap">
+      <p class="kicker">Player 1 · Ready</p>
+      <h1 class="game-title">
+        <span>Lê Quang</span>
+        <span class="accent">Vũ</span>
+      </h1>
+      <p class="subtitle">{profile.role}</p>
+      <p class="tagline">
+        I build in-house game engines at Gameloft Vietnam, and shipped Asphalt Legends to 100M+ players on mobile, PC
+        and console.
+      </p>
+
+      <nav class="menu" aria-label="Main menu" data-menu>
+        <ul>
+          {menu.map((m) => (
+            <li>
+              <a href={m.href}>
+                <span class="label">{m.label}</span>
+                <span class="note">{m.note}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <p class="hint" aria-hidden="true">↑ ↓ select · Enter start</p>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2 class="section-title"><Sprite sprite={star} scale={4} /> Featured levels</h2>
+    <div class="level-grid">
+      {featured.map((p) => <LevelCard project={p} />)}
+    </div>
+    <p class="more"><a class="px-btn" href="/projects/">▶ All levels</a></p>
+  </section>
+
+  <section class="wrap section char-preview">
+    <h2 class="section-title"><Sprite sprite={star} scale={4} /> Character</h2>
+    <div class="cp-grid">
+      <div class="cp-card px-box">
+        <div class="portrait"><Sprite sprite={avatar} scale={6} label="Pixel portrait of Vũ" /></div>
+        <div>
+          <p class="eyebrow">Class</p>
+          <p class="cp-class">{profile.role}</p>
+          <p class="eyebrow">Guild</p>
+          <p class="cp-guild">{profile.guild}</p>
+        </div>
+      </div>
+      <div class="cp-stats">
+        {topStats.map((s) => <StatBar name={s.name} value={s.value} color="gold" />)}
+        <p class="more"><a class="px-btn ghost" href="/about/">▶ Full character sheet</a></p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Arcade-style menu: arrow keys move between items once the menu has focus.
+  const items = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-menu] a'));
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    const i = items.indexOf(document.activeElement as HTMLAnchorElement);
+    if (i === -1) return;
+    e.preventDefault();
+    const next = (i + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+    items[next].focus();
+  });
+</script>
+
+<style>
+  .title-screen {
+    position: relative;
+    min-height: min(860px, calc(100svh - 64px));
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 200px;
+    background: linear-gradient(180deg, #0b0a1e 0%, #15123a 55%, #221c52 100%);
+    border-bottom: 4px solid var(--shadow);
+    overflow: hidden;
+  }
+
+  .hud {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-block: 20px 0;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+  }
+  .hud div { display: grid; gap: 8px; }
+  .hud div:nth-child(2) { text-align: center; }
+  .hud div:nth-child(3) { text-align: right; }
+  .hud dt { font-size: 9px; color: var(--red); }
+  .hud dd { margin: 0; font-size: 14px; color: var(--ink); }
+
+  .title-inner {
+    position: relative;
+    margin-block: auto;
+    padding-block: 48px 24px;
+  }
+  .kicker {
+    font-family: var(--font-display);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+  .game-title {
+    display: grid;
+    margin: 0 0 20px;
+    font-size: clamp(30px, 7.4vw, 76px);
+    line-height: 1.15;
+    color: var(--ink);
+    text-shadow:
+      4px 4px 0 var(--red),
+      8px 8px 0 var(--shadow);
+  }
+  .game-title .accent { color: var(--gold); }
+  .subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(11px, 1.6vw, 15px);
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 18px;
+  }
+  .tagline { max-width: 46ch; color: var(--ink-dim); font-size: 20px; margin-bottom: 32px; }
+
+  .menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; width: fit-content; }
+  .menu a {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 10px 14px 10px 36px;
+    position: relative;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+  }
+  .menu a::before {
+    content: '▶';
+    position: absolute;
+    left: 10px;
+    color: var(--gold);
+    visibility: hidden;
+    animation: nudge 0.5s steps(2) infinite;
+  }
+  .menu .label { font-size: clamp(12px, 1.7vw, 15px); }
+  .menu .note { font-size: 9px; color: var(--ink-dim); }
+  .menu a:hover,
+  .menu a:focus-visible { background: rgb(255 204 77 / 0.12); color: var(--gold); outline: none; }
+  .menu a:hover::before,
+  .menu a:focus-visible::before { visibility: visible; }
+  /* when nothing is hovered or focused, the cursor rests on the first item */
+  .menu ul:not(:hover):not(:focus-within) li:first-child a::before { visibility: visible; }
+  .menu ul:not(:hover):not(:focus-within) li:first-child a { color: var(--gold); }
+  @keyframes nudge { 50% { transform: translateX(-4px); } }
+
+  .hint {
+    margin: 20px 0 0;
+    font-family: var(--font-display);
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    animation: blink 1.2s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (hover: none) { .hint { display: none; } }
+
+  .level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 28px;
+  }
+  .more { margin: 36px 0 0; }
+
+  .cp-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center; }
+  .cp-card { display: flex; gap: 24px; align-items: center; padding: 24px; }
+  .portrait { padding: 12px; background: var(--bg-2); box-shadow: 0 0 0 4px var(--panel-2); flex: none; }
+  .cp-card .eyebrow { margin-bottom: 4px; }
+  .cp-class, .cp-guild { font-size: 20px; line-height: 1.3; margin-bottom: 14px; }
+  .cp-guild { margin-bottom: 0; color: var(--gold); }
+
+  @media (max-width: 760px) {
+    .hud dd { font-size: 11px; }
+    .hud dt { font-size: 8px; }
+    .cp-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .cp-card { flex-direction: column; align-items: flex-start; }
+    .menu a { padding-right: 8px; }
+    .menu .note { display: none; }
+  }
+</style>

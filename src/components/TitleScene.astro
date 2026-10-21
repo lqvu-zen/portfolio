@@ -1,0 +1,130 @@
+---
+// Decorative backdrop for the title screen: pixel stars, a two-layer city
+// skyline and a road with a car driving on it. Generated at build time with a
+// fixed seed, so the scene is identical on every build and ships no JS.
+import Sprite from './Sprite.astro';
+import { car } from '../data/sprites';
+
+let seed = 1337;
+const rand = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+
+const stars = Array.from({ length: 80 }, () => ({
+  x: (rand() * 100).toFixed(2),
+  y: (rand() * 62).toFixed(2),
+  size: rand() > 0.85 ? 4 : 2,
+  twinkle: rand() > 0.75,
+  delay: (rand() * 3).toFixed(2),
+}));
+
+function skyline(minH: number, maxH: number) {
+  const out: { w: number; h: number }[] = [];
+  let total = 0;
+  while (total < 2400) {
+    const w = 24 + Math.round(rand() * 6) * 8;
+    const h = minH + Math.round((rand() * (maxH - minH)) / 8) * 8;
+    out.push({ w, h });
+    total += w;
+  }
+  return out;
+}
+const back = skyline(48, 128);
+const front = skyline(24, 88);
+---
+
+<div class="scene" aria-hidden="true">
+  <div class="stars">
+    {stars.map((s) => (
+      <i
+        class={s.twinkle ? 'tw' : undefined}
+        style={`left:${s.x}%;top:${s.y}%;width:${s.size}px;height:${s.size}px;animation-delay:${s.delay}s`}
+      />
+    ))}
+  </div>
+  <div class="moon"></div>
+  <div class="city back">{back.map((b) => <span style={`width:${b.w}px;height:${b.h}px`} />)}</div>
+  <div class="city front">{front.map((b) => <span style={`width:${b.w}px;height:${b.h}px`} />)}</div>
+  <div class="road">
+    <div class="lane"></div>
+    <div class="car"><Sprite sprite={car} scale={5} /></div>
+  </div>
+  <div class="scanlines"></div>
+</div>
+
+<style>
+  .scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .stars i { position: absolute; background: var(--ink); }
+  .stars i.tw { animation: twinkle 2.4s steps(2) infinite; }
+  @keyframes twinkle { 50% { opacity: 0.2; } }
+
+  .moon {
+    position: absolute;
+    right: 9%;
+    top: 14%;
+    width: 64px;
+    height: 64px;
+    background: var(--gold);
+    box-shadow:
+      inset -16px -8px 0 0 #e0a92f,
+      0 0 0 8px rgb(255 204 77 / 0.08),
+      0 0 0 20px rgb(255 204 77 / 0.04);
+    clip-path: polygon(25% 0, 75% 0, 75% 6%, 88% 6%, 88% 13%, 94% 13%, 94% 25%, 100% 25%, 100% 75%, 94% 75%, 94% 88%, 88% 88%, 88% 94%, 75% 94%, 75% 100%, 25% 100%, 25% 94%, 12% 94%, 12% 88%, 6% 88%, 6% 75%, 0 75%, 0 25%, 6% 25%, 6% 13%, 12% 13%, 12% 6%, 25% 6%);
+  }
+
+  .city {
+    position: absolute;
+    left: 0;
+    bottom: 88px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .city span { flex: none; display: block; position: relative; }
+  .city.back span { background: #120f30; }
+  .city.front span { background: #1b1746; }
+  /* lit windows: a column grid masked into rows */
+  .city.front span::before {
+    content: '';
+    position: absolute;
+    inset: 8px 6px 20px;
+    background:
+      repeating-linear-gradient(0deg, #1b1746 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(90deg, rgb(255 204 77 / 0.5) 0 4px, transparent 4px 10px);
+  }
+  .city.front span:nth-child(3n)::before { opacity: 0.35; }
+
+  .road {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 88px;
+    background: #191632;
+    border-top: 4px solid var(--panel-2);
+  }
+  .lane {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 46px;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0 32px, transparent 32px 64px);
+    animation: lane 0.5s linear infinite;
+    opacity: 0.8;
+  }
+  @keyframes lane { to { background-position: -64px 0; } }
+  .car {
+    position: absolute;
+    left: clamp(16px, 12%, 160px);
+    top: 4px;
+    animation: bob 0.3s steps(2) infinite;
+  }
+  @keyframes bob { 50% { transform: translateY(-4px); } }
+
+  @media (max-width: 600px) { .moon { display: none; } }
+
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgb(0 0 0 / 0.18) 0 2px, transparent 2px 4px);
+    mix-blend-mode: multiply;
+  }
+</style>

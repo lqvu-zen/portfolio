@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Game over" description="This page doesn't exist.">
+  <section class="wrap over">
+    <p class="eyebrow">Error 404</p>
+    <h1>Game over</h1>
+    <p class="msg">This level doesn't exist, or it moved.</p>
+    <p class="continue" aria-hidden="true">Continue? <span data-count>9</span></p>
+    <p class="actions">
+      <a class="px-btn" href="/">▶ Continue</a>
+      <a class="px-btn ghost" href="/projects/">Level select</a>
+    </p>
+  </section>
+</Base>
+
+<script>
+  const el = document.querySelector('[data-count]');
+  let n = 9;
+  const t = setInterval(() => {
+    n -= 1;
+    if (el) el.textContent = String(Math.max(n, 0));
+    if (n <= 0) clearInterval(t);
+  }, 1000);
+</script>
+
+<style>
+  .over { padding-block: 120px; text-align: center; }
+  h1 {
+    font-size: clamp(32px, 8vw, 72px);
+    color: var(--red);
+    text-shadow: 6px 6px 0 var(--shadow);
+    margin: 16px 0 24px;
+  }
+  .msg { color: var(--ink-dim); font-size: 20px; }
+  .continue { font-family: var(--font-display); font-size: 14px; text-transform: uppercase; margin: 36px 0; color: var(--gold); }
+  .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+</style>

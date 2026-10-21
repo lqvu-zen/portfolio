@@ -1,43 +1,42 @@
-# Astro Starter Kit: Minimal
+# zenitus.dev
+
+Pixel-game portfolio for Lê Quang Vũ, built with [Astro](https://astro.build) and deployed on Cloudflare Pages.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static site in dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Where things live
 
-## 🚀 Project Structure
+| What | File |
+|---|---|
+| Projects ("levels") | `src/content/projects/*.md`, one file per project |
+| Name, bio, links, stats, achievements | `src/data/profile.ts` |
+| Pixel sprites (car, trophy, avatar…) | `src/data/sprites.ts`, drawn as text grids |
+| Colours, fonts, pixel boxes, buttons | `src/styles/global.css` (`:root` tokens) |
+| Pages | `src/pages/` |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Adding a project
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+1. Copy any file in `src/content/projects/` and rename it. The file name becomes the URL
+   (`my-tool.md` → `/projects/my-tool/`).
+2. Fill in the frontmatter: `title`, `level`, `world`, `order`, `summary`, `context`, `role`, `tech`.
+   Optional: `period`, `team`, `youtube` (video id only), `links`, `featured: true` to show it on
+   the home page, and `accent` (`gold`, `red`, `blue`, `green`, `pink`).
+3. Anything written below the frontmatter appears on the project page under **Dev notes**.
+
+The schema is in `src/content.config.ts`; the build fails with a clear message if a field is missing.
+
+## Editing a sprite
+
+Each sprite is a list of strings where every character is one pixel and `.` is transparent.
+The `palette` maps characters to colours. Example:
+
+```ts
+export const heart = {
+  rows: ['.RR.RR.', 'RRRRRRR', '.RRRRR.', '..RRR..', '...R...'],
+  palette: { R: 'var(--red)' },
+};
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,0 +1,44 @@
+---
+import type { SpriteDef } from '../data/sprites';
+
+interface Props {
+  sprite: SpriteDef;
+  scale?: number;
+  label?: string; // accessible name; omit for decorative sprites
+  class?: string;
+}
+
+const { sprite, scale = 4, label, class: className } = Astro.props;
+const { rows, palette } = sprite;
+const w = Math.max(...rows.map((r) => r.length));
+const h = rows.length;
+
+// Merge horizontal runs of the same colour into one rect to keep the SVG small.
+const rects: { x: number; y: number; w: number; fill: string }[] = [];
+rows.forEach((row, y) => {
+  let x = 0;
+  while (x < row.length) {
+    const ch = row[x];
+    const fill = palette[ch];
+    if (!fill) { x++; continue; }
+    let run = 1;
+    while (row[x + run] === ch) run++;
+    rects.push({ x, y, w: run, fill });
+    x += run;
+  }
+});
+---
+
+<svg
+  class={className}
+  viewBox={`0 0 ${w} ${h}`}
+  width={w * scale}
+  height={h * scale}
+  shape-rendering="crispEdges"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  focusable="false"
+>
+  {rects.map((r) => <rect x={r.x} y={r.y} width={r.w} height="1" fill={r.fill} />)}
+</svg>

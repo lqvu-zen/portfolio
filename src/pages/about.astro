@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import Sprite from '../components/Sprite.astro';
+import StatBar from '../components/StatBar.astro';
+import { avatar, trophy, star } from '../data/sprites';
+import { profile, statGroups, achievements } from '../data/profile';
+
+const medalColor = { gold: 'var(--gold)', silver: '#d7dcef', bronze: '#e08a4f' } as const;
+const facts = [
+  { k: 'Class', v: profile.role },
+  { k: 'Guild', v: profile.guild },
+  { k: 'Home base', v: profile.base },
+  { k: 'Speaks', v: profile.speaks },
+];
+---
+
+<Base title="Character" description="About Lê Quang Vũ: engine programmer, skills, platforms and achievements.">
+  <section class="wrap section">
+    <p class="eyebrow">Character sheet</p>
+    <h1 class="page-title">Player 1</h1>
+
+    <div class="sheet">
+      <div class="card px-box">
+        <div class="portrait"><Sprite sprite={avatar} scale={10} label="Pixel portrait of Vũ" /></div>
+        <p class="name">{profile.name}</p>
+        <dl class="facts">
+          {facts.map((f) => (
+            <div>
+              <dt>{f.k}</dt>
+              <dd>{f.v}</dd>
+            </div>
+          ))}
+        </dl>
+        <a class="px-btn" href={profile.resume}>▶ Load resume</a>
+      </div>
+
+      <div class="bio">
+        <h2>Backstory</h2>
+        {profile.bio.map((b) => <p>{b}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="stats-h">
+    <h2 class="section-title" id="stats-h"><Sprite sprite={star} scale={4} /> Stats</h2>
+    <div class="stat-grid">
+      {statGroups.map((g) => (
+        <div class="px-box stat-card" style={`--accent: var(--${g.color})`}>
+          <h3>{g.name}</h3>
+          {g.stats.map((s) => <StatBar name={s.name} value={s.value} color={g.color} />)}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="ach-h">
+    <h2 class="section-title" id="ach-h"><Sprite sprite={star} scale={4} /> Achievements</h2>
+    <ul class="ach-grid">
+      {achievements.map((a) => (
+        <li class="ach px-box" style={`--medal: ${medalColor[a.medal]}`}>
+          <div class="trophy"><Sprite sprite={trophy} scale={5} /></div>
+          <div>
+            <p class="unlocked">Unlocked · {a.year}</p>
+            <h3>
+              <span class="place">{a.place}</span> {a.title}
+            </h3>
+            <p class="detail">{a.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .page-title { font-size: clamp(22px, 4.2vw, 36px); margin: 8px 0 40px; text-shadow: 4px 4px 0 var(--shadow); }
+
+  .sheet { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 48px; align-items: start; }
+  .card { padding: 28px; display: grid; gap: 20px; justify-items: start; }
+  .portrait { padding: 16px; background: var(--bg-2); box-shadow: 0 0 0 4px var(--panel-2); justify-self: center; }
+  .name { font-family: var(--font-display); font-size: 15px; margin: 0; color: var(--gold); }
+  .facts { margin: 0; display: grid; gap: 10px; width: 100%; }
+  .facts div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: baseline; }
+  .facts dt { font-family: var(--font-display); font-size: 9px; text-transform: uppercase; color: var(--ink-dim); }
+  .facts dd { margin: 0; font-size: 18px; line-height: 1.35; }
+  .bio { font-size: 20px; max-width: 56ch; }
+  .bio h2 { color: var(--gold); }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .stat-card { padding: 24px; }
+  .stat-card h3 { color: var(--accent); margin-bottom: 14px; }
+
+  .ach-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .ach { display: flex; gap: 20px; align-items: center; padding: 22px; }
+  .trophy {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    color: var(--medal);
+    background: var(--bg-2);
+    box-shadow: 0 0 0 4px var(--medal);
+  }
+  .unlocked { margin: 0 0 6px; font-family: var(--font-display); font-size: 8px; text-transform: uppercase; color: var(--green); }
+  .ach h3 { margin: 0 0 6px; font-size: 11px; line-height: 1.7; }
+  .place { color: var(--medal); }
+  .detail { margin: 0; color: var(--ink-dim); font-size: 16px; line-height: 1.4; }
+
+  @media (max-width: 860px) {
+    .sheet { grid-template-columns: 1fr; gap: 32px; }
+    .stat-grid, .ach-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .ach { flex-direction: column; align-items: flex-start; }
+    .facts div { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
