@@ -37,7 +37,7 @@ const menu = [
     <div class="title-inner wrap">
       <p class="kicker">Player 1 · Ready</p>
       <h1 class="game-title">
-        <span>Lê Quang</span>
+        <span>Lê Quang</span>{' '}
         <span class="accent">Vũ</span>
       </h1>
       <p class="subtitle">{profile.role}</p>
@@ -109,7 +109,7 @@ const menu = [
     min-height: min(860px, calc(100svh - 64px));
     display: flex;
     flex-direction: column;
-    padding-bottom: 200px;
+    padding-bottom: 112px;
     background: linear-gradient(180deg, #0b0a1e 0%, #15123a 55%, #221c52 100%);
     border-bottom: 4px solid var(--shadow);
     overflow: hidden;
@@ -119,6 +119,7 @@ const menu = [
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: end;
     gap: 16px;
     margin-block: 20px 0;
     font-family: var(--font-display);
@@ -127,17 +128,17 @@ const menu = [
   .hud div { display: grid; gap: 8px; }
   .hud div:nth-child(2) { text-align: center; }
   .hud div:nth-child(3) { text-align: right; }
-  .hud dt { font-size: 9px; color: var(--red); }
-  .hud dd { margin: 0; font-size: 14px; color: var(--ink); }
+  .hud dt { font-size: var(--fs-pixel-xs); color: var(--red); }
+  .hud dd { margin: 0; font-size: var(--fs-pixel-md); color: var(--ink); }
 
   .title-inner {
     position: relative;
     margin-block: auto;
-    padding-block: 48px 24px;
+    padding-block: 32px 16px;
   }
   .kicker {
     font-family: var(--font-display);
-    font-size: 11px;
+    font-size: var(--fs-pixel-sm);
     text-transform: uppercase;
     color: var(--green);
     margin-bottom: 20px;
@@ -160,7 +161,7 @@ const menu = [
     color: var(--blue);
     margin-bottom: 18px;
   }
-  .tagline { max-width: 46ch; color: var(--ink-dim); font-size: 20px; margin-bottom: 32px; }
+  .tagline { max-width: 46ch; color: var(--ink-dim); font-size: var(--fs-lead); margin-bottom: 32px; }
 
   .menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; width: fit-content; }
   .menu a {
@@ -183,7 +184,7 @@ const menu = [
     animation: nudge 0.5s steps(2) infinite;
   }
   .menu .label { font-size: clamp(12px, 1.7vw, 15px); }
-  .menu .note { font-size: 9px; color: var(--ink-dim); }
+  .menu .note { font-size: var(--fs-pixel-xs); color: var(--ink-dim); }
   .menu a:hover,
   .menu a:focus-visible { background: rgb(255 204 77 / 0.12); color: var(--gold); outline: none; }
   .menu a:hover::before,
@@ -196,7 +197,7 @@ const menu = [
   .hint {
     margin: 20px 0 0;
     font-family: var(--font-display);
-    font-size: 9px;
+    font-size: var(--fs-pixel-xs);
     text-transform: uppercase;
     color: var(--ink-dim);
     animation: blink 1.2s steps(1) infinite;
@@ -215,12 +216,11 @@ const menu = [
   .cp-card { display: flex; gap: 24px; align-items: center; padding: 24px; }
   .portrait { padding: 12px; background: var(--bg-2); box-shadow: 0 0 0 4px var(--panel-2); flex: none; }
   .cp-card .eyebrow { margin-bottom: 4px; }
-  .cp-class, .cp-guild { font-size: 20px; line-height: 1.3; margin-bottom: 14px; }
+  .cp-class, .cp-guild { font-size: var(--fs-lead); line-height: 1.3; margin-bottom: 14px; }
   .cp-guild { margin-bottom: 0; color: var(--gold); }
 
   @media (max-width: 760px) {
-    .hud dd { font-size: 11px; }
-    .hud dt { font-size: 8px; }
+    .hud dd { font-size: var(--fs-pixel-sm); }
     .cp-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 420px) {

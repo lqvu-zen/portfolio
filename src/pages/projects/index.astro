@@ -46,6 +46,6 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     background: repeating-linear-gradient(135deg, var(--bg-2) 0 12px, var(--panel) 12px 24px);
     text-align: center;
   }
-  .locked .display { font-size: 12px; margin: 0; color: var(--ink-dim); }
-  .locked-note { margin: 0; color: var(--ink-dim); font-size: 17px; }
+  .locked .display { font-size: var(--fs-pixel-sm); margin: 0; color: var(--ink-dim); }
+  .locked-note { margin: 0; color: var(--ink-dim); font-size: var(--fs-small); }
 </style>

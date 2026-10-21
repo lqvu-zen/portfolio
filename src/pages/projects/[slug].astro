@@ -101,22 +101,22 @@ const meta = [p.context, p.period, p.team].filter(Boolean);
 
 <style>
   .crumbs { margin-bottom: 28px; }
-  .crumbs a { font-family: var(--font-display); font-size: 10px; text-transform: uppercase; }
+  .crumbs a { font-family: var(--font-display); font-size: var(--fs-pixel-xs); text-transform: uppercase; }
 
   .badge {
     display: inline-block;
     margin-bottom: 18px;
     padding: 7px 8px 6px;
     font-family: var(--font-display);
-    font-size: 10px;
+    font-size: var(--fs-pixel-xs);
     text-transform: uppercase;
     background: var(--accent);
     color: var(--shadow);
   }
   h1 { font-size: clamp(20px, 4vw, 36px); margin-bottom: 18px; text-shadow: 4px 4px 0 var(--shadow); }
-  .summary { font-size: 21px; max-width: 52ch; color: var(--ink); }
+  .summary { font-size: var(--fs-lead); max-width: 52ch; color: var(--ink); }
   .meta { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; padding: 0; margin: 0; color: var(--ink-dim); }
-  .meta li { font-family: var(--font-display); font-size: 9px; text-transform: uppercase; }
+  .meta li { font-size: var(--fs-info); }
   .meta li + li::before { content: '◆'; color: var(--accent); margin-right: 22px; margin-left: -12px; }
 
   .media { margin-top: 40px; max-width: 860px; }
@@ -124,7 +124,7 @@ const meta = [p.context, p.period, p.team].filter(Boolean);
 
   .grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px; margin-top: 48px; align-items: start; }
   .quest { padding: 28px; }
-  .quest h2, .panel h2 { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--accent); }
+  .quest h2, .panel h2 { display: flex; align-items: center; gap: 12px; font-size: var(--fs-pixel-sm); color: var(--accent); }
   .quests { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
   .quests li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; }
   .check {
@@ -138,7 +138,7 @@ const meta = [p.context, p.period, p.team].filter(Boolean);
   }
   .side { display: grid; gap: 28px; }
   .panel { padding: 24px; }
-  .tri { font-size: 11px; }
+  .tri { font-size: var(--fs-pixel-sm); }
   .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 
   .notes { margin-top: 56px; max-width: 72ch; }
