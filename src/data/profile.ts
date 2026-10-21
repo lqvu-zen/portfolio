@@ -13,7 +13,7 @@ export const profile = {
   ],
   email: 'lqvu.zen@gmail.com',
   github: 'https://github.com/lqvu-zen',
-  linkedin: 'https://linkedin.com/in/lqvu',
+  linkedin: 'https://www.linkedin.com/in/lqvu',
   resume: '/resume.pdf',
 };
 
