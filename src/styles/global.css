@@ -22,6 +22,14 @@
   --font-display: 'Press Start 2P', ui-monospace, monospace;
   --font-body: 'Pixelify Sans', ui-monospace, monospace;
 
+  --fs-pixel-xs: 10px;
+  --fs-pixel-sm: 12px;
+  --fs-pixel-md: 15px;
+  --fs-info: 15px;
+  --fs-small: 17px;
+  --fs-body: 19px;
+  --fs-lead: 20px;
+
   --px: 4px; /* one "pixel" of UI chrome */
   --max: 1100px;
 }
@@ -32,7 +40,7 @@ html {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: var(--fs-body);
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
@@ -64,7 +72,7 @@ h1, h2, h3, h4, .display {
   margin: 0 0 0.75em;
 }
 h2 { font-size: clamp(14px, 2.2vw, 18px); }
-h3 { font-size: 13px; }
+h3 { font-size: var(--fs-pixel-sm); }
 
 p { margin: 0 0 1em; }
 
@@ -108,7 +116,7 @@ a:hover { color: var(--shadow); background: var(--gold); text-decoration: none; 
   margin: var(--b);
   padding: 14px 18px 16px;
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: var(--fs-pixel-sm);
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
@@ -136,10 +144,10 @@ a:hover { color: var(--shadow); background: var(--gold); text-decoration: none; 
 /* ---------- Chips (tech tags) ---------- */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
 .chip {
-  font-family: var(--font-display);
-  font-size: 9px;
+  font-family: var(--font-body);
+  font-size: var(--fs-info);
   line-height: 1;
-  padding: 7px 8px 6px;
+  padding: 5px 8px 4px;
   color: var(--ink);
   background: var(--panel-2);
   box-shadow: 0 0 0 2px var(--ink-dim);
@@ -164,7 +172,7 @@ a:hover { color: var(--shadow); background: var(--gold); text-decoration: none; 
 
 .eyebrow {
   font-family: var(--font-display);
-  font-size: 10px;
+  font-size: var(--fs-pixel-xs);
   text-transform: uppercase;
   color: var(--ink-dim);
   letter-spacing: 0.08em;

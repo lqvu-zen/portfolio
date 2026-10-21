@@ -24,11 +24,11 @@ const filled = Math.round(value / 10);
     gap: 12px;
     padding-block: 6px;
   }
-  .name { font-size: 17px; line-height: 1.3; }
+  .name { font-size: var(--fs-small); line-height: 1.3; }
   .bar { display: flex; gap: 3px; padding: 3px; background: var(--shadow); }
   .bar i { width: 10px; height: 14px; background: #2f2a63; }
   .bar i.on { background: var(--fill); box-shadow: inset 0 -3px 0 0 rgb(0 0 0 / 0.25); }
-  .val { font-family: var(--font-display); font-size: 10px; text-align: right; color: var(--ink-dim); }
+  .val { font-family: var(--font-display); font-size: var(--fs-pixel-xs); text-align: right; color: var(--ink-dim); }
   @media (max-width: 420px) {
     .bar i { width: 7px; }
   }
