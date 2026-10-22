@@ -21,7 +21,10 @@ import Base from '../layouts/Base.astro';
   const t = setInterval(() => {
     n -= 1;
     if (el) el.textContent = String(Math.max(n, 0));
-    if (n <= 0) clearInterval(t);
+    if (n <= 0) {
+      clearInterval(t);
+      if (el?.parentElement) el.parentElement.textContent = 'Press continue';
+    }
   }, 1000);
 </script>
 

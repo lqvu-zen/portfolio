@@ -75,11 +75,12 @@ const links = [
   nav a[aria-current='page']::before { content: '▶ '; }
   @media (max-width: 480px) {
     .logo span { display: none; }
-    nav a { padding-inline: 7px; }
+    nav a { padding-inline: 6px; font-size: 12px; }
+    .bar { gap: 8px; }
     nav a[aria-current='page']::before { content: ''; }
   }
   @media (max-width: 360px) {
     ul { gap: 0; }
-    nav a { padding-inline: 4px; }
+    nav a { padding-inline: 4px; font-size: 10px; }
   }
 </style>

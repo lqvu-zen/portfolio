@@ -19,8 +19,8 @@ export const profile = {
 
 // Shown as the arcade HUD on the title screen.
 export const hud = [
-  { label: 'Years in games', value: '04+' },
-  { label: 'Hi-score · players', value: '100M+' },
+  { label: 'Years', value: '04+' },
+  { label: 'Players', value: '100M+' },
   { label: 'Platforms', value: '05' },
 ];
 

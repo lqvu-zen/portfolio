@@ -96,7 +96,13 @@ const menu = [
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
     const i = items.indexOf(document.activeElement as HTMLAnchorElement);
-    if (i === -1) return;
+    if (i === -1) {
+      if (e.key === 'ArrowDown' && document.activeElement === document.body && window.scrollY < 100) {
+        e.preventDefault();
+        items[0].focus();
+      }
+      return;
+    }
     e.preventDefault();
     const next = (i + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
     items[next].focus();
@@ -110,7 +116,7 @@ const menu = [
     display: flex;
     flex-direction: column;
     padding-bottom: 112px;
-    background: linear-gradient(180deg, #0b0a1e 0%, #15123a 55%, #221c52 100%);
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, var(--sky-low) 100%);
     border-bottom: 4px solid var(--shadow);
     overflow: hidden;
   }
@@ -156,7 +162,7 @@ const menu = [
   .game-title .accent { color: var(--gold); }
   .subtitle {
     font-family: var(--font-display);
-    font-size: clamp(11px, 1.6vw, 15px);
+    font-size: clamp(13px, 1.6vw, 15px);
     text-transform: uppercase;
     color: var(--blue);
     margin-bottom: 18px;
@@ -183,7 +189,7 @@ const menu = [
     visibility: hidden;
     animation: nudge 0.5s steps(2) infinite;
   }
-  .menu .label { font-size: clamp(12px, 1.7vw, 15px); }
+  .menu .label { font-size: clamp(13px, 1.7vw, 15px); }
   .menu .note { font-size: var(--fs-pixel-xs); color: var(--ink-dim); }
   .menu a:hover,
   .menu a:focus-visible { background: rgb(255 204 77 / 0.12); color: var(--gold); outline: none; }
